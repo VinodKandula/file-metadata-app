@@ -1,0 +1,38 @@
+<table class="col-md-6">
+
+    <div class="file-group">
+        <label for="filePath">File Path</label>
+        <input type="text" class="form-control" name="filePath" [(ngModel)]="filePath" size="57"> 
+        <button type="button" (click)="getFileMetadata()">Get File Metadata</button>
+    </div>
+    <br/>
+    <br/>
+    <div class="directory-group"> 
+        <label for="dirPath">Directory Path</label>
+        <input type="text" class="form-control" name="dirPath" [(ngModel)]="dirPath" size="57"> 
+        <button type="button" (click)="getDirectoryMetadata()">Get Directory Metadata</button>
+    </div>
+
+    <div *ngIf="loading">loading...</div>
+    
+    <br/>
+    <br/>
+
+    <div *ngIf="errorMessage" class="alert alert-warning">
+       <strong>Warning!</strong> 
+       <tbody>
+            <ngx-json-viewer [json]="errorMessage" [expanded]="false"></ngx-json-viewer>
+        </tbody>
+    </div>
+
+    <div *ngIf="filemetadata">
+        <!-- <pre>{{filemetadata | json}}</pre> -->
+        <br/>
+        <strong>File Metadata</strong>
+        <tbody>
+            <ngx-json-viewer [json]="filemetadata" [expanded]="true"></ngx-json-viewer>
+        </tbody>
+    </div>
+    
+
+</table>
